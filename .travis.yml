@@ -1,20 +1,12 @@
+sudo: false
 language: node_js
-
-os: linux
-
-branches:
-  only:
-  - site
-
+node_js:
+  - 12
 cache:
   - npm
-
-node_js:
-  - "10"
-
-before_script:
-  - npm install
-  - hexo cl
+branches:
+  only:
+    - site
 
 script:
   - hexo generate
@@ -23,8 +15,10 @@ deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
-  local-dir: public
   keep-history: false
+  committer_from_gh: true
+  target_branch: master
   on:
-    branch: master
+    branch: site
+  local-dir: public
 
