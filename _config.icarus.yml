@@ -128,9 +128,9 @@ search:
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
 comment:
     type: gitalk
-    repo: tracyliu1220.github.io
     client_id: 98269a8aafc362955bb4
     client_secret: 3a0bdb74555894e5bb8f4698a20ecc9c30b2fce1
+    repo: tracyliu1220.github.io
     owner: tracyliu1220
     admin:
         - tracyliu1220
@@ -317,7 +317,7 @@ plugins:
     katex: false
     # Enable the MathJax math typesetting support
     # https://www.mathjax.org/
-    mathjax: false
+    mathjax: true
     # Enable the Outdated Browser plugin
     # http://outdatedbrowser.com/
     outdated_browser: false
