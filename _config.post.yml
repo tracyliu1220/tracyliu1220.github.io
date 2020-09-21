@@ -1,0 +1,42 @@
+sidebar:
+    left:
+        sticky: true
+    right:
+        sticky: false
+
+widgets:
+    # -
+    #     # Where should the widget be placed, left sidebar or right sidebar
+    #     position: left
+    #     type: profile
+    #     # Author name
+    #     author: Tracy Liu
+    #     # Author title
+    #     author_title: NCTU CS
+    #     # Author's current location
+    #     location: Hsinchu, Taiwan
+    #     # URL or path to the avatar image
+    #     avatar: 
+    #     # Whether show the rounded avatar image
+    #     avatar_rounded: true
+    #     # Email address for the Gravatar
+    #     gravatar: 
+    #     # URL or path for the follow button
+    #     follow_link: 'https://github.com/tracyliu1220'
+    #     # Links to be shown on the bottom of the profile widget
+    #     social_links:
+    #         Github:
+    #             icon: fab fa-github
+    #             url: 'https://github.com/tracyliu1220'
+    #         Facebook:
+    #             icon: fab fa-facebook
+    #             url: 'https://www.facebook.com/tracyliu1220'
+    #         RSS:
+    #             icon: fas fa-rss
+    #             url: 'atom.xml'
+    # Table of contents widget configurations
+    -
+        # Where should the widget be placed, left sidebar or right sidebar
+        position: left
+        type: toc
+
