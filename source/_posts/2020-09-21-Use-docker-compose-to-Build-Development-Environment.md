@@ -182,3 +182,37 @@ docker 在做 port forwarding 的時候預設是將 `0.0.0.0:container_port` 拉
 
 下一篇應該會來寫寫 sandbox 怎麼用
 希望這個禮拜有時間寫
+
+---
+
+## 2021.1.3 Updated
+
+這個學期修了一門架雲服務的課，
+認識了人很好的助教，
+助教學姐跟我說 Dockerfile `apt-get` 的部份寫在同一行並刪掉 apt lists 可以讓 docker 的 cache 大小減小
+
+下面是那堂課架的服務的 Dockerfile 來當作例子
+
+主要的變動有
+- `apt-get` 全寫在同一行（用 `\` 連接起來）
+- `apt clean`
+- `rm -rf /var/lib/apt/lists/*`
+
+```dockerfile
+FROM ubuntu:20.04
+WORKDIR /code
+
+ADD requirements.txt /code
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python3-pip \
+    vim \
+    python3-pymysql && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install -r requirements.txt
+
+EXPOSE 5000
+```
+
