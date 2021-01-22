@@ -10,8 +10,6 @@ branches:
 
 script:
   - npm install
-  - rm node_modules/hexo-theme-icarus/source/img/*
-  - cp img/* node_modules/hexo-theme-icarus/source/img/
   - hexo generate
 
 deploy:
