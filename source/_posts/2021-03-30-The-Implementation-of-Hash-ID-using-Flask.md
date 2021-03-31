@@ -1,5 +1,5 @@
 ---
-title: The Implementation of Hash ID using Flask
+title: 實作 Flask 後端中的 Hash ID 需求
 categories: Uncategorized
 toc: true
 date: 2021-03-30 23:02:16
