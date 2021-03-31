@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Datasets - Tracy&#039;s Neverland</title><meta description="MNIST SeriesMNIST  Image of handwritten digit 60000 training examples 10000 test examples 28*28 grayscale images 10 classes"><meta property="og:type" content="blog"><meta property="og:title" content="Datasets"><meta property="og:url" content="https://tracyliu1220.github.io/2019/11/21/2019-11-21-Datasets/"><meta property="og:site_name" content="Tracy&#039;s Neverland"><meta property="og:description" content="MNIST SeriesMNIST  Image of handwritten digit 60000 training examples 10000 test examples 28*28 grayscale images 10 classes"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://tracyliu1220.github.io/img/avatar.png"><meta property="article:published_time" content="2019-11-21T00:00:00.000Z"><meta property="article:modified_time" content="2021-03-31T01:22:55.489Z"><meta property="article:author" content="Tracy Liu"><meta property="article:tag" content="deep learning"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/avatar.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://tracyliu1220.github.io/2019/11/21/2019-11-21-Datasets/"},"headline":"Tracy's Neverland","image":["https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png","https://i.imgur.com/7LjzXlc.png","https://i.imgur.com/2tjJIWx.png","https://i.imgur.com/cbPgTEO.png","https://i.imgur.com/qrMnMKW.png","https://i.imgur.com/BSbo6s5.jpg","https://i.imgur.com/x2QZo29.jpg","https://i.imgur.com/WddWEH5.jpg","https://i.imgur.com/wAG9x05.png","https://i.imgur.com/TKOmobH.png","https://i.imgur.com/GKs4ka0.jpg","https://i.imgur.com/AMdsdQL.jpg","https://i.imgur.com/BmPkfzf.png","https://i.imgur.com/OIC7y5t.png","https://i.imgur.com/ndOYznq.jpg","https://i.imgur.com/8YucNo0.png","https://i.imgur.com/Y8bPryF.png","https://i.imgur.com/g79kIlL.png","https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/zuerich00.png","https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/saarbrucken01.png","https://i.imgur.com/kp0be6L.png","https://i.imgur.com/VIiNC4n.png","https://i.imgur.com/c3yry5N.jpg"],"datePublished":"2019-11-21T00:00:00.000Z","dateModified":"2021-03-31T01:22:55.489Z","author":{"@type":"Person","name":"Tracy Liu"},"description":"MNIST SeriesMNIST  Image of handwritten digit 60000 training examples 10000 test examples 28*28 grayscale images 10 classes"}</script><link rel="canonical" href="https://tracyliu1220.github.io/2019/11/21/2019-11-21-Datasets/"><link rel="icon" href="/img/rounded_avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-178400900-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-178400900-1');</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Tracy's Neverland" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.png" alt="Tracy&#039;s Neverland" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tracyliu1220/tracyliu1220.github.io"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2019-11-21T00:00:00.000Z" title="2019-11-21T00:00:00.000Z">2019-11-21</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-03-31T01:22:55.489Z" title="2021-03-31T01:22:55.489Z">2021-03-31</time></span><span class="level-item"><a class="link-muted" href="/categories/Uncategorized/">Uncategorized</a></span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">Datasets</h1><div class="content"><h2 id="MNIST-Series"><a href="#MNIST-Series" class="headerlink" title="MNIST Series"></a>MNIST Series</h2><h3 id="MNIST"><a href="#MNIST" class="headerlink" title="MNIST"></a>MNIST</h3><p><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png"></p>
+<ul>
+<li>Image of handwritten digit</li>
+<li>60000 training examples</li>
+<li>10000 test examples</li>
+<li>28*28 grayscale images</li>
+<li>10 classes</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="Fashion-MNIST"><a href="#Fashion-MNIST" class="headerlink" title="Fashion-MNIST"></a>Fashion-MNIST</h3><p><img src="https://i.imgur.com/7LjzXlc.png"></p>
+<ul>
+<li>Images of clothing and accessories</li>
+<li>60000 training examples (same as mnist)</li>
+<li>10000 test examples (same as mnist)</li>
+<li>28*28 grayscale images. (still the same as mnist)</li>
+<li>10 classes. (same as mnist)</li>
+<li>Designed to be a direct drop-in replacement for MNIST</li>
+</ul>
+<h3 id="Kuzushiji-MNIST-KMNIST"><a href="#Kuzushiji-MNIST-KMNIST" class="headerlink" title="Kuzushiji MNIST (KMNIST)"></a>Kuzushiji MNIST (KMNIST)</h3><p><img src="https://i.imgur.com/2tjJIWx.png"></p>
+<ul>
+<li>Images of Kanji characters.</li>
+<li>Also a drop-in replacement of MNIST. </li>
+<li>Provide Kuzushiji-49 with 49 classes.</li>
+<li>Provide Kuzushiji-Kanji for all Kanji characters, but less complete. </li>
+</ul>
+<h3 id="EMNIST"><a href="#EMNIST" class="headerlink" title="EMNIST"></a>EMNIST</h3><p><img src="https://i.imgur.com/cbPgTEO.png"></p>
+<ul>
+<li>Images of handwritten digits &amp; characters</li>
+<li>Same format as MNIST, but with more classes</li>
+<li>Designed to be more challenging than MNIST</li>
+</ul>
+<h3 id="QMNIST"><a href="#QMNIST" class="headerlink" title="QMNIST"></a>QMNIST</h3><p><img src="https://i.imgur.com/qrMnMKW.png"></p>
+<ul>
+<li>Recover missing testing data in MNIST</li>
+</ul>
+<h2 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h2><h3 id="COCO-Datasets"><a href="#COCO-Datasets" class="headerlink" title="COCO Datasets"></a>COCO Datasets</h3><p><img src="https://i.imgur.com/BSbo6s5.jpg"></p>
+<ul>
+<li>Large scale image dataset object detection, segmentation, and captioning</li>
+<li>Includes segmentations and bounding boxes of objects in images</li>
+<li>Includes image captions</li>
+</ul>
+<h3 id="LSUN"><a href="#LSUN" class="headerlink" title="LSUN"></a>LSUN</h3><p><img src="https://i.imgur.com/x2QZo29.jpg"></p>
+<ul>
+<li>Images of scenes or objects</li>
+<li>10 scene categories</li>
+<li>20 object categories</li>
+<li><em>Partially</em> automated labeled.</li>
+<li>Huge amount (1 million) images per category</li>
+</ul>
+<h3 id="ImageNet"><a href="#ImageNet" class="headerlink" title="ImageNet"></a>ImageNet</h3><p><img src="https://i.imgur.com/WddWEH5.jpg"></p>
+<p><img src="https://i.imgur.com/wAG9x05.png"></p>
+<ul>
+<li>Images organized following WordNet hierarchy (only nouns)</li>
+<li>Largest image datasets</li>
+<li>15 millions of images</li>
+<li>22 thousands of classes</li>
+</ul>
+<h3 id="CIFAR"><a href="#CIFAR" class="headerlink" title="CIFAR"></a>CIFAR</h3><p><img src="https://i.imgur.com/TKOmobH.png"></p>
+<ul>
+<li>Tiny images of 32*32 coloured images</li>
+<li>CIFAR-10 : 10 classes with 6000 images each</li>
+<li>CIFAR-100: 100 classes with 600 images each</li>
+</ul>
+<h3 id="STL-10"><a href="#STL-10" class="headerlink" title="STL-10"></a>STL-10</h3><p><img src="https://i.imgur.com/GKs4ka0.jpg"></p>
+<ul>
+<li>Images of 10 classes</li>
+<li>Inspired by CIFAR-10 but more - focused on unsupervised tasks</li>
+<li>Higher resolution: 96*96 coloured images</li>
+<li>Images acquired from ImageNet</li>
+<li>Assistance to building priors</li>
+</ul>
+<h3 id="SVHN"><a href="#SVHN" class="headerlink" title="SVHN"></a>SVHN</h3><p><img src="https://i.imgur.com/AMdsdQL.jpg"></p>
+<p><img src="https://i.imgur.com/BmPkfzf.png"></p>
+<ul>
+<li>Images of street view house numbers</li>
+<li>Two formats<ul>
+<li>Original images with character level bounding boxes</li>
+<li>MNIST-like 32*32 image center around a single character</li>
+</ul>
+</li>
+</ul>
+<h3 id="SBU-Captioned-Photo"><a href="#SBU-Captioned-Photo" class="headerlink" title="SBU Captioned Photo"></a>SBU Captioned Photo</h3><p><img src="https://i.imgur.com/OIC7y5t.png"></p>
+<ul>
+<li>1 million images with associated visually relevant captions</li>
+<li>Resources<ul>
+<li>Data<ul>
+<li>1 million image urls and their captions</li>
+<li>A script to crawl images</li>
+</ul>
+</li>
+<li>Search tool: search for images using text queries</li>
+</ul>
+</li>
+</ul>
+<h3 id="The-Flickr30k-Dataset"><a href="#The-Flickr30k-Dataset" class="headerlink" title="The Flickr30k Dataset"></a>The Flickr30k Dataset</h3><p><img src="https://i.imgur.com/ndOYznq.jpg"></p>
+<h3 id="Pascal-VOC-Data-Sets"><a href="#Pascal-VOC-Data-Sets" class="headerlink" title="Pascal VOC Data Sets"></a>Pascal VOC Data Sets</h3><p><img src="https://i.imgur.com/8YucNo0.png"></p>
+<p><img src="https://i.imgur.com/Y8bPryF.png"></p>
+<p><img src="https://i.imgur.com/g79kIlL.png"></p>
+<ul>
+<li>20 classes</li>
+<li>11530 images<ul>
+<li>27450 ROI annotated objects</li>
+<li>6929 segmentations</li>
+</ul>
+</li>
+<li>Challenges</li>
+</ul>
+<h3 id="Cityscapes-Dataset"><a href="#Cityscapes-Dataset" class="headerlink" title="Cityscapes Dataset"></a>Cityscapes Dataset</h3><p><img src="https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/zuerich00.png"></p>
+<p><img src="https://www.cityscapes-dataset.com/wordpress/wp-content/uploads/2015/07/saarbrucken01.png"></p>
+<ul>
+<li>Urban street scenes</li>
+<li>Features<ul>
+<li>Annotations: semantic, instance-wise, dance pixel</li>
+<li>30 Classes</li>
+<li>50 cities</li>
+<li>Different seasons, daytime, and weather conditions</li>
+</ul>
+</li>
+<li>5000 fine annotated images</li>
+<li>20000 coarse annotated images</li>
+</ul>
+<h3 id="Semantic-Boundaries-Dataset"><a href="#Semantic-Boundaries-Dataset" class="headerlink" title="Semantic Boundaries Dataset"></a>Semantic Boundaries Dataset</h3><p><img src="https://i.imgur.com/kp0be6L.png"></p>
+<ul>
+<li>Mark up the pixels that lie on the boundary of the object</li>
+</ul>
+<h2 id="Videos"><a href="#Videos" class="headerlink" title="Videos"></a>Videos</h2><h3 id="Kinetics-400-Dataset"><a href="#Kinetics-400-Dataset" class="headerlink" title="Kinetics-400 Dataset"></a>Kinetics-400 Dataset</h3><ul>
+<li>650000 video clip url links</li>
+<li>700 human cation classes</li>
+<li>Each action class has at least 600 video clips</li>
+</ul>
+<h3 id="HMDB-Dataset"><a href="#HMDB-Dataset" class="headerlink" title="HMDB Dataset"></a>HMDB Dataset</h3><p><img src="https://i.imgur.com/VIiNC4n.png"></p>
+<ul>
+<li>1,000,000,000 videos of human motions<ul>
+<li>General facial actions: smile, laugh, chew, talk</li>
+<li>Facial actions with object manipulation: smoke, eat, drink</li>
+<li>General body movements</li>
+<li>Body movements with object interaction</li>
+<li>Body movements for human interaction</li>
+</ul>
+</li>
+</ul>
+<h3 id="UCF101-Dataset"><a href="#UCF101-Dataset" class="headerlink" title="UCF101 Dataset"></a>UCF101 Dataset</h3><p><img src="https://i.imgur.com/c3yry5N.jpg"></p>
+<ul>
+<li>An action recognition data set of realistic action videos</li>
+<li>5 action categories<ul>
+<li>Human-Object interaction</li>
+<li>Body-Motion only</li>
+<li>Human human interaction</li>
+<li>Playing musical instruments</li>
+<li>Sports</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/torchvision/datasets.html">torchvision.datasets</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Datasets</p><p><a href="https://tracyliu1220.github.io/2019/11/21/2019-11-21-Datasets/">https://tracyliu1220.github.io/2019/11/21/2019-11-21-Datasets/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Tracy Liu</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-11-21</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/deep-learning/">deep learning</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=5f4f920daad6e60013d63d69&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/09/21/2020-09-21-Use-docker-compose-to-Build-Development-Environment/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">使用 docker-compose 建立開發環境</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/10/07/2019-10-07-tcsh-prompt-styling/"><span class="level-item">Tcsh Prompt 個人化</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "005352290cecb0c3131d6c1d279f1a3f",
+            repo: "tracyliu1220.github.io",
+            owner: "tracyliu1220",
+            clientID: "98269a8aafc362955bb4",
+            clientSecret: "3a0bdb74555894e5bb8f4698a20ecc9c30b2fce1",
+            admin: ["tracyliu1220"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="is-flex" href="#MNIST-Series"><span class="mr-2">1</span><span>MNIST Series</span></a><ul class="menu-list"><li><a class="is-flex" href="#MNIST"><span class="mr-2">1.1</span><span>MNIST</span></a></li><li><a class="is-flex" href="#Fashion-MNIST"><span class="mr-2">1.2</span><span>Fashion-MNIST</span></a></li><li><a class="is-flex" href="#Kuzushiji-MNIST-KMNIST"><span class="mr-2">1.3</span><span>Kuzushiji MNIST (KMNIST)</span></a></li><li><a class="is-flex" href="#EMNIST"><span class="mr-2">1.4</span><span>EMNIST</span></a></li><li><a class="is-flex" href="#QMNIST"><span class="mr-2">1.5</span><span>QMNIST</span></a></li></ul></li><li><a class="is-flex" href="#Images"><span class="mr-2">2</span><span>Images</span></a><ul class="menu-list"><li><a class="is-flex" href="#COCO-Datasets"><span class="mr-2">2.1</span><span>COCO Datasets</span></a></li><li><a class="is-flex" href="#LSUN"><span class="mr-2">2.2</span><span>LSUN</span></a></li><li><a class="is-flex" href="#ImageNet"><span class="mr-2">2.3</span><span>ImageNet</span></a></li><li><a class="is-flex" href="#CIFAR"><span class="mr-2">2.4</span><span>CIFAR</span></a></li><li><a class="is-flex" href="#STL-10"><span class="mr-2">2.5</span><span>STL-10</span></a></li><li><a class="is-flex" href="#SVHN"><span class="mr-2">2.6</span><span>SVHN</span></a></li><li><a class="is-flex" href="#SBU-Captioned-Photo"><span class="mr-2">2.7</span><span>SBU Captioned Photo</span></a></li><li><a class="is-flex" href="#The-Flickr30k-Dataset"><span class="mr-2">2.8</span><span>The Flickr30k Dataset</span></a></li><li><a class="is-flex" href="#Pascal-VOC-Data-Sets"><span class="mr-2">2.9</span><span>Pascal VOC Data Sets</span></a></li><li><a class="is-flex" href="#Cityscapes-Dataset"><span class="mr-2">2.10</span><span>Cityscapes Dataset</span></a></li><li><a class="is-flex" href="#Semantic-Boundaries-Dataset"><span class="mr-2">2.11</span><span>Semantic Boundaries Dataset</span></a></li></ul></li><li><a class="is-flex" href="#Videos"><span class="mr-2">3</span><span>Videos</span></a><ul class="menu-list"><li><a class="is-flex" href="#Kinetics-400-Dataset"><span class="mr-2">3.1</span><span>Kinetics-400 Dataset</span></a></li><li><a class="is-flex" href="#HMDB-Dataset"><span class="mr-2">3.2</span><span>HMDB Dataset</span></a></li><li><a class="is-flex" href="#UCF101-Dataset"><span class="mr-2">3.3</span><span>UCF101 Dataset</span></a></li></ul></li><li><a class="is-flex" href="#Reference"><span class="mr-2">4</span><span>Reference</span></a></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.png" alt="Tracy&#039;s Neverland" height="28"></a><p class="size-small"><span>&copy; 2021 Tracy Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

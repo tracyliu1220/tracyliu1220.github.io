@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Effective Approaches to Attention-based Neural Machine Translation - Tracy&#039;s Neverland</title><meta description="EMNLP 2015@stanford.edu  Contentspdf Introduction Attentional mechanism jointly translate and align words 2 types of attention-based models global all source words   local subset of source words"><meta property="og:type" content="blog"><meta property="og:title" content="Effective Approaches to Attention-based Neural Machine Translation"><meta property="og:url" content="https://tracyliu1220.github.io/2019/08/16/2019-08-16-Effective-Approaches-to-Attention-based-Neural-Machine-Translation/"><meta property="og:site_name" content="Tracy&#039;s Neverland"><meta property="og:description" content="EMNLP 2015@stanford.edu  Contentspdf Introduction Attentional mechanism jointly translate and align words 2 types of attention-based models global all source words   local subset of source words"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://tracyliu1220.github.io/img/avatar.png"><meta property="article:published_time" content="2019-08-16T13:40:22.000Z"><meta property="article:modified_time" content="2021-03-31T01:22:55.485Z"><meta property="article:author" content="Tracy Liu"><meta property="article:tag" content="deep learning"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/avatar.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://tracyliu1220.github.io/2019/08/16/2019-08-16-Effective-Approaches-to-Attention-based-Neural-Machine-Translation/"},"headline":"Tracy's Neverland","image":["https://i.imgur.com/69SFqyy.png","https://i.imgur.com/n8SilT4.png","https://i.imgur.com/psJB2I3.png","https://i.imgur.com/ZWHl65J.png","https://i.imgur.com/sCL1Knu.png","https://i.imgur.com/6BwRjj8.png","https://i.imgur.com/UtZYje2.png","https://i.imgur.com/oXAktzA.png","https://i.imgur.com/7xhm4Uc.png"],"datePublished":"2019-08-16T13:40:22.000Z","dateModified":"2021-03-31T01:22:55.485Z","author":{"@type":"Person","name":"Tracy Liu"},"description":"EMNLP 2015@stanford.edu  Contentspdf Introduction Attentional mechanism jointly translate and align words 2 types of attention-based models global all source words   local subset of source words"}</script><link rel="canonical" href="https://tracyliu1220.github.io/2019/08/16/2019-08-16-Effective-Approaches-to-Attention-based-Neural-Machine-Translation/"><link rel="icon" href="/img/rounded_avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-178400900-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-178400900-1');</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Tracy's Neverland" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.png" alt="Tracy&#039;s Neverland" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tracyliu1220/tracyliu1220.github.io"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2019-08-16T13:40:22.000Z" title="2019-08-16T13:40:22.000Z">2019-08-16</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-03-31T01:22:55.485Z" title="2021-03-31T01:22:55.485Z">2021-03-31</time></span><span class="level-item"><a class="link-muted" href="/categories/Paper-Notes/">Paper Notes</a></span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">Effective Approaches to Attention-based Neural Machine Translation</h1><div class="content"><blockquote>
+<p>EMNLP 2015<br>@stanford.edu</p>
+</blockquote>
+<h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><p><a target="_blank" rel="noopener" href="https://aclweb.org/anthology/D15-1166">pdf</a></p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><ul>
+<li>Attentional mechanism jointly translate and align words</li>
+<li>2 types of attention-based models<ul>
+<li>global<ul>
+<li>all source words</li>
+</ul>
+</li>
+<li>local<ul>
+<li>subset of source words</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="Neural-Machine-Translation"><a href="#Neural-Machine-Translation" class="headerlink" title="Neural Machine Translation"></a>Neural Machine Translation</h3><p><img src="https://i.imgur.com/69SFqyy.png"></p>
+<h4 id="Probabilistic-model"><a href="#Probabilistic-model" class="headerlink" title="Probabilistic model"></a>Probabilistic model</h4><p>$p(y|x)$</p>
+<h4 id="input"><a href="#input" class="headerlink" title="input"></a>input</h4><p>$x_1, …, x_n$</p>
+<h4 id="output"><a href="#output" class="headerlink" title="output"></a>output</h4><p>$y_1, …, y_m$</p>
+<h4 id="2-components"><a href="#2-components" class="headerlink" title="2 components"></a>2 components</h4><ul>
+<li>encoder: to compute a representation $s$ of source sentences</li>
+<li>decoder: to generate one target word at a time</li>
+</ul>
+<p>$log\ p(y|x) = \Sigma_{j=1}^m log\ p(y_j|y_{&lt;j}, s)$</p>
+<h4 id="using-LSTM"><a href="#using-LSTM" class="headerlink" title="using LSTM"></a>using LSTM</h4><h4 id="the-probability-of-decoding-each-word-y-j"><a href="#the-probability-of-decoding-each-word-y-j" class="headerlink" title="the probability of decoding each word $y_j$"></a>the probability of decoding each word $y_j$</h4><p>$p(y_j|y{&lt;j}, s) = softmax(g(h_j))$</p>
+<p>$g$ is the transformation fuction that outputs a vocabulary-sized vector</p>
+<h4 id="training-objective"><a href="#training-objective" class="headerlink" title="training objective"></a>training objective</h4><p>$J_t = \Sigma_{(x,y)\in\mathbb{D}}-log\ p(y|x)$</p>
+<h3 id="Attention-based-Models"><a href="#Attention-based-Models" class="headerlink" title="Attention-based Models"></a>Attention-based Models</h3><ul>
+<li>context vector $c_t$<ul>
+<li>captures relevant source-side information to help predict the current target word $y_t$</li>
+<li>weighted average over all the source hidden states</li>
+</ul>
+</li>
+<li>align weights $a_t$</li>
+</ul>
+<p>$\tilde{h}_t = tanh(W_c[c_t;h_t])$</p>
+<p>$p(y_t|y_{&lt;t},x) = softmax(W_s\tilde{h}_t)$</p>
+<h4 id="Global-Attention"><a href="#Global-Attention" class="headerlink" title="Global Attention"></a>Global Attention</h4><p><img src="https://i.imgur.com/n8SilT4.png"></p>
+<p>$a_t(s) = align(h_t, \bar{h}<em>s) = \frac{exp(score(h_t, \bar{h}_s))}{\Sigma</em>{s’}exp(score(h_t, \bar{h}_{s’}))}$</p>
+<p>$$<br>score(h_t,\bar{h}_s) =<br>\begin{cases}<br>h_t^\top\bar{h}_s \<br>h_t^\top W_a\bar{h}_s \<br>v_a^\top tanh(W_a[h_t^\top;\bar{h}_s])<br>\end{cases}<br>$$</p>
+<blockquote>
+<p>dot, general, concat</p>
+</blockquote>
+<h4 id="Local-Attention"><a href="#Local-Attention" class="headerlink" title="Local Attention"></a>Local Attention</h4><p><img src="https://i.imgur.com/psJB2I3.png"></p>
+<ul>
+<li>window $D$<ul>
+<li>$c_t$ is derived as a weighted average within the window $[p_t-D,p_t+D]$</li>
+<li>empirically selected</li>
+</ul>
+</li>
+<li>$a_t$<ul>
+<li>fixed dimension $2D+1$</li>
+<li>Gaussian distribution centered around $p_t$</li>
+<li>$a_t(s) = align(h_t, \tilde{h}_s)exp(- \frac{(s - p_t)^2}{2\sigma^2})$</li>
+</ul>
+</li>
+</ul>
+<h5 id="Monotonic-alignment-local-m"><a href="#Monotonic-alignment-local-m" class="headerlink" title="Monotonic alignment (local-m)"></a>Monotonic alignment (local-m)</h5><p>$p_t = t$</p>
+<h5 id="Predictive-alignment-local-p"><a href="#Predictive-alignment-local-p" class="headerlink" title="Predictive alignment (local-p)"></a>Predictive alignment (local-p)</h5><p>$p_t = S \cdot sigmoid(v_p^\top tanh(W_p h_t))$</p>
+<ul>
+<li>source sentence length $S$</li>
+<li>model parameters (to be learnt): $v_p^\top$, $W_p$</li>
+</ul>
+<h4 id="Input-feeding-Approach"><a href="#Input-feeding-Approach" class="headerlink" title="Input-feeding Approach"></a>Input-feeding Approach</h4><p><img src="https://i.imgur.com/ZWHl65J.png"></p>
+<ul>
+<li>to keep tracking of which source words have been translated</li>
+<li>alignment decisions should be made jointly taking into account past alignment information</li>
+</ul>
+<h4 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h4><h5 id="Training-Details"><a href="#Training-Details" class="headerlink" title="Training Details"></a>Training Details</h5><ul>
+<li>WMT’14 training data<ul>
+<li>4.5M sentences pairs</li>
+<li>116M English words, 110M German words</li>
+<li>limit vocabularies to 50K with token &lt;unk&gt;</li>
+</ul>
+</li>
+<li>LSTM models<ul>
+<li>4 layers</li>
+<li>1000 cells</li>
+</ul>
+</li>
+<li>parameters: uniformly initialized in [-0.1, 0.1]</li>
+<li>10 epochs using SGD</li>
+</ul>
+<h5 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h5><p><img src="https://i.imgur.com/sCL1Knu.png"></p>
+<p><img src="https://i.imgur.com/6BwRjj8.png"></p>
+<p><img src="https://i.imgur.com/UtZYje2.png"></p>
+<p><img src="https://i.imgur.com/oXAktzA.png"></p>
+<p><img src="https://i.imgur.com/7xhm4Uc.png"></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Effective Approaches to Attention-based Neural Machine Translation</p><p><a href="https://tracyliu1220.github.io/2019/08/16/2019-08-16-Effective-Approaches-to-Attention-based-Neural-Machine-Translation/">https://tracyliu1220.github.io/2019/08/16/2019-08-16-Effective-Approaches-to-Attention-based-Neural-Machine-Translation/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Tracy Liu</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-08-16</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/deep-learning/">deep learning</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=5f4f920daad6e60013d63d69&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/08/16/2019-08-16-Attention-is-All-You-Need/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Attention is All You Need</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/07/31/2019-07-31-Auto-Encoding-Variational-Bayes/"><span class="level-item">Auto-Encoding Variational Bayes</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "5bfd3a459ff10e52a7f524d36a6bdd00",
+            repo: "tracyliu1220.github.io",
+            owner: "tracyliu1220",
+            clientID: "98269a8aafc362955bb4",
+            clientSecret: "3a0bdb74555894e5bb8f4698a20ecc9c30b2fce1",
+            admin: ["tracyliu1220"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="is-flex" href="#Contents"><span class="mr-2">1</span><span>Contents</span></a><ul class="menu-list"><li><a class="is-flex" href="#Introduction"><span class="mr-2">1.1</span><span>Introduction</span></a></li><li><a class="is-flex" href="#Neural-Machine-Translation"><span class="mr-2">1.2</span><span>Neural Machine Translation</span></a><ul class="menu-list"><li><a class="is-flex" href="#Probabilistic-model"><span class="mr-2">1.2.1</span><span>Probabilistic model</span></a></li><li><a class="is-flex" href="#input"><span class="mr-2">1.2.2</span><span>input</span></a></li><li><a class="is-flex" href="#output"><span class="mr-2">1.2.3</span><span>output</span></a></li><li><a class="is-flex" href="#2-components"><span class="mr-2">1.2.4</span><span>2 components</span></a></li><li><a class="is-flex" href="#using-LSTM"><span class="mr-2">1.2.5</span><span>using LSTM</span></a></li><li><a class="is-flex" href="#the-probability-of-decoding-each-word-y-j"><span class="mr-2">1.2.6</span><span>the probability of decoding each word $y_j$</span></a></li><li><a class="is-flex" href="#training-objective"><span class="mr-2">1.2.7</span><span>training objective</span></a></li></ul></li><li><a class="is-flex" href="#Attention-based-Models"><span class="mr-2">1.3</span><span>Attention-based Models</span></a><ul class="menu-list"><li><a class="is-flex" href="#Global-Attention"><span class="mr-2">1.3.1</span><span>Global Attention</span></a></li><li><a class="is-flex" href="#Predictive-alignment-local-p"><span class="mr-2">1.3.2</span><span>Predictive alignment (local-p)</span></a></li><li><a class="is-flex" href="#Input-feeding-Approach"><span class="mr-2">1.3.3</span><span>Input-feeding Approach</span></a></li><li><a class="is-flex" href="#Results"><span class="mr-2">1.3.4</span><span>Results</span></a></li></ul></li></ul></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.png" alt="Tracy&#039;s Neverland" height="28"></a><p class="size-small"><span>&copy; 2021 Tracy Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

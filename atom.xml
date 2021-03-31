@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Tracy&#39;s Neverland</title>
+  <icon>https://tracyliu1220.github.io/img/rounded_avatar.png</icon>
+  
+  <link href="https://tracyliu1220.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://tracyliu1220.github.io/"/>
+  <updated>2021-03-31T01:22:55.489Z</updated>
+  <id>https://tracyliu1220.github.io/</id>
+  
+  <author>
+    <name>Tracy Liu</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>實作 Flask 後端中的 Hash ID 需求</title>
+    <link href="https://tracyliu1220.github.io/2021/03/30/2021-03-30-The-Implementation-of-Hash-ID-using-Flask/"/>
+    <id>https://tracyliu1220.github.io/2021/03/30/2021-03-30-The-Implementation-of-Hash-ID-using-Flask/</id>
+    <published>2021-03-30T23:02:16.000Z</published>
+    <updated>2021-03-31T01:22:55.489Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Hash-ID&quot;&gt;&lt;a href=&quot;#Hash-ID&quot; class=&quot;headerlink&quot; title=&quot;Hash ID&quot;&gt;&lt;/a&gt;Hash ID&lt;/h2&gt;&lt;p&gt;上個學期有個小組的學期作業，要寫一個雲端服務，&lt;br&gt;我們組的主題是實作出一個功能較多又比較兼顧 UI 的 &lt;a href=&quot;https://www.when2meet.com/&quot;&gt;when2meet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在實作分享功能的時候，&lt;br&gt;我們希望有一個頁面的資訊（一個叫做 meeting 的 model）可以用網址分享，&lt;br&gt;讓沒登入的人也可以看得到，&lt;br&gt;但是這樣的分享方式如果直接用 restful api 的標準的話，&lt;br&gt;直接使用 &lt;code&gt;api/meetings/&amp;lt;meeting_id&amp;gt;&lt;/code&gt; （這裡 &lt;code&gt;&amp;lt;meeting_id&amp;gt;&lt;/code&gt; 是整數）當網址來呼叫需要的 api，&lt;br&gt;會讓不相干的人直接在 &lt;code&gt;&amp;lt;meeting_id&amp;gt;&lt;/code&gt; 打上數字戳進來&lt;/p&gt;
+&lt;p&gt;所以要使用 hash_id 來實作，&lt;br&gt;最簡單的方式是直接隨機 random 出一串字串當作 model 的 id，&lt;br&gt;但我總覺得這樣做很不舒服，&lt;br&gt;所以我選擇直接拿原來的 id 做 encrypt&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Uncategorized" scheme="https://tracyliu1220.github.io/categories/Uncategorized/"/>
+    
+    
+    <category term="flask" scheme="https://tracyliu1220.github.io/tags/flask/"/>
+    
+    <category term="crypto" scheme="https://tracyliu1220.github.io/tags/crypto/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 travis-ci 自動部署 Hexo Blog 到 GitHub Page</title>
+    <link href="https://tracyliu1220.github.io/2021/03/22/2021-03-24-Use-travis-ci-to-Deploy-Blog/"/>
+    <id>https://tracyliu1220.github.io/2021/03/22/2021-03-24-Use-travis-ci-to-Deploy-Blog/</id>
+    <published>2021-03-22T16:57:32.000Z</published>
+    <updated>2021-03-31T01:22:55.489Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Hexo-部署到-GitHub-Page&quot;&gt;&lt;a href=&quot;#Hexo-部署到-GitHub-Page&quot; class=&quot;headerlink&quot; title=&quot;Hexo 部署到 GitHub Page&quot;&gt;&lt;/a&gt;Hexo 部署到 GitHub Page&lt;/h2&gt;&lt;p&gt;Hexo 部署到 GitHub Page 應該算是最常見的方式了&lt;br&gt;我之前都是照&lt;a href=&quot;https://medium.com/@bebebobohaha/%E4%BD%BF%E7%94%A8-hexo-gitpage-%E6%90%AD%E5%BB%BA%E5%80%8B%E4%BA%BA-blog-5c6ed52f23db&quot;&gt;這篇&lt;/a&gt;最後面的方式部署&lt;br&gt;但我在去年決定改成使用 travis-ci 來幫我自動化的將部落格丟到伺服器上&lt;/p&gt;
+&lt;h2 id=&quot;我的-Hexo-Blog-git-架構&quot;&gt;&lt;a href=&quot;#我的-Hexo-Blog-git-架構&quot; class=&quot;headerlink&quot; title=&quot;我的 Hexo Blog git 架構&quot;&gt;&lt;/a&gt;我的 Hexo Blog git 架構&lt;/h2&gt;&lt;p&gt;我延續了使用叫做 &amp;lt;username&amp;gt;.github.io 的 repository，&lt;br&gt;Branch 名稱與規劃如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Branch &lt;code&gt;site&lt;/code&gt;: source，markdown 稿子&lt;/li&gt;
+&lt;li&gt;Branch &lt;code&gt;master&lt;/code&gt;: 由 &lt;code&gt;hexo generate&lt;/code&gt; 產生的靜態檔案（伺服器位置&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Uncategorized" scheme="https://tracyliu1220.github.io/categories/Uncategorized/"/>
+    
+    
+    <category term="hexo" scheme="https://tracyliu1220.github.io/tags/hexo/"/>
+    
+    <category term="travis-ci" scheme="https://tracyliu1220.github.io/tags/travis-ci/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>isolate Sandbox 使用</title>
+    <link href="https://tracyliu1220.github.io/2020/09/22/2020-09-22-Sandbox-ioi-isolate/"/>
+    <id>https://tracyliu1220.github.io/2020/09/22/2020-09-22-Sandbox-ioi-isolate/</id>
+    <published>2020-09-22T20:32:52.000Z</published>
+    <updated>2021-03-31T01:22:55.489Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Sandbox&quot;&gt;&lt;a href=&quot;#Sandbox&quot; class=&quot;headerlink&quot; title=&quot;Sandbox&quot;&gt;&lt;/a&gt;Sandbox&lt;/h2&gt;&lt;p&gt;Sandbox 的中文名字就是直譯過來的沙箱&lt;br&gt;他能讓程式在一個隔離的環境中執行&lt;br&gt;隔離的意思就是有限的路徑、有限的記憶體甚至是有限的 process 數量等等&lt;br&gt;通常是拿來測試一些不受信任的程式&lt;br&gt;讓我們就算執行了惡意程式也不會影響到我們的作業系統或環境&lt;/p&gt;
+&lt;p&gt;今天依然是在寫 OJ 中 judgehost 的部份&lt;br&gt;因為 judgehost 需要跑別人 submission 送來的程式&lt;br&gt;如果有人送個惡意程式的話就糟糕了&lt;br&gt;所以就需要用到 sandbox&lt;br&gt;把大家的 submission 放在 sandbox 裡面跑&lt;/p&gt;
+&lt;h2 id=&quot;isolate&quot;&gt;&lt;a href=&quot;#isolate&quot; class=&quot;headerlink&quot; title=&quot;isolate&quot;&gt;&lt;/a&gt;isolate&lt;/h2&gt;&lt;p&gt;isolate 是 ioi 的那群人開發的一個&lt;a href=&quot;https://github.com/ioi/isolate&quot;&gt;開源 sandbox&lt;/a&gt;&lt;br&gt;甚至還有蠻不錯的 &lt;a href=&quot;http://www.ucw.cz/moe/isolate.1.html&quot;&gt;manual page&lt;/a&gt;&lt;br&gt;前陣子發現還不錯的 judgehost 開源 API —— &lt;a href=&quot;https://github.com/judge0&quot;&gt;Judge0&lt;/a&gt; 也是使用 isolate 搭配 Ruby on Rails 實現的&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Projects" scheme="https://tracyliu1220.github.io/categories/Projects/"/>
+    
+    <category term="MyOJ" scheme="https://tracyliu1220.github.io/categories/Projects/MyOJ/"/>
+    
+    
+    <category term="sandbox" scheme="https://tracyliu1220.github.io/tags/sandbox/"/>
+    
+    <category term="isolate" scheme="https://tracyliu1220.github.io/tags/isolate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 docker-compose 建立開發環境</title>
+    <link href="https://tracyliu1220.github.io/2020/09/21/2020-09-21-Use-docker-compose-to-Build-Development-Environment/"/>
+    <id>https://tracyliu1220.github.io/2020/09/21/2020-09-21-Use-docker-compose-to-Build-Development-Environment/</id>
+    <published>2020-09-21T07:21:46.000Z</published>
+    <updated>2021-03-31T01:22:55.489Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;動機&quot;&gt;&lt;a href=&quot;#動機&quot; class=&quot;headerlink&quot; title=&quot;動機&quot;&gt;&lt;/a&gt;動機&lt;/h2&gt;&lt;p&gt;最近覺得自己的開發技能還有很多欠缺的地方&lt;br&gt;尤其是完整的開發流程&lt;br&gt;以往都是直接在自己的本機開發&lt;br&gt;也沒有使用 CI/CD&lt;/p&gt;
+&lt;p&gt;然後又突然想寫寫看 OJ&lt;br&gt;於是我打算直接做中學&lt;br&gt;並做以下幾個改變&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 docker-compose 建立開發環境&lt;/li&gt;
+&lt;li&gt;善用 environment variables&lt;/li&gt;
+&lt;li&gt;做 testing 以及 CI/CD&lt;/li&gt;
+&lt;li&gt;認真寫 git commit messages&lt;/li&gt;
+&lt;li&gt;將學到的東西跟踩到的坑寫成 blog 文章&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Projects" scheme="https://tracyliu1220.github.io/categories/Projects/"/>
+    
+    <category term="MyOJ" scheme="https://tracyliu1220.github.io/categories/Projects/MyOJ/"/>
+    
+    
+    <category term="docker" scheme="https://tracyliu1220.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Datasets</title>
+    <link href="https://tracyliu1220.github.io/2019/11/21/2019-11-21-Datasets/"/>
+    <id>https://tracyliu1220.github.io/2019/11/21/2019-11-21-Datasets/</id>
+    <published>2019-11-21T00:00:00.000Z</published>
+    <updated>2021-03-31T01:22:55.489Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;MNIST-Series&quot;&gt;&lt;a href=&quot;#MNIST-Series&quot; class=&quot;headerlink&quot; title=&quot;MNIST Series&quot;&gt;&lt;/a&gt;MNIST Series&lt;/h2&gt;&lt;h3 id=&quot;MNIST&quot;&gt;&lt;a href=&quot;#MNIST&quot; class=&quot;headerlink&quot; title=&quot;MNIST&quot;&gt;&lt;/a&gt;MNIST&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Image of handwritten digit&lt;/li&gt;
+&lt;li&gt;60000 training examples&lt;/li&gt;
+&lt;li&gt;10000 test examples&lt;/li&gt;
+&lt;li&gt;28*28 grayscale images&lt;/li&gt;
+&lt;li&gt;10 classes&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Uncategorized" scheme="https://tracyliu1220.github.io/categories/Uncategorized/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tcsh Prompt 個人化</title>
+    <link href="https://tracyliu1220.github.io/2019/10/07/2019-10-07-tcsh-prompt-styling/"/>
+    <id>https://tracyliu1220.github.io/2019/10/07/2019-10-07-tcsh-prompt-styling/</id>
+    <published>2019-10-07T21:11:44.000Z</published>
+    <updated>2021-03-31T01:22:55.489Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;最近學校好多作業都要使用系上的工作站&lt;br&gt;系上有提供能夠 ssh 進去的 Linux 跟 FreeBSD 空間&lt;br&gt;預設的 shell 是 tcsh&lt;br&gt;而且是很原生的 tcsh&lt;/p&gt;
+&lt;p&gt;多麼的原生呢？&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/KQnAHWk.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Uncategorized" scheme="https://tracyliu1220.github.io/categories/Uncategorized/"/>
+    
+    
+    <category term="linux" scheme="https://tracyliu1220.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 Docker 架設 DOMjudge</title>
+    <link href="https://tracyliu1220.github.io/2019/09/21/2019-09-21-Use-Docker-to-setup-Domjudge/"/>
+    <id>https://tracyliu1220.github.io/2019/09/21/2019-09-21-Use-Docker-to-setup-Domjudge/</id>
+    <published>2019-09-21T11:07:41.000Z</published>
+    <updated>2021-03-31T01:22:55.489Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;基於某些原因社團需要架設 DOMjudge，因為不想弄髒環境所以最後選擇建在 Docker 裏面&lt;br&gt;架設 DOMjudge 需要 3 個以上的 Container，&lt;a href=&quot;https://hub.docker.com/r/domjudge/domserver/&quot;&gt;Domjudge 官網&lt;/a&gt;上有幫我們整理好 Docker 指令要怎麼下&lt;/p&gt;
+&lt;h2 id=&quot;MariaDB-Container&quot;&gt;&lt;a href=&quot;#MariaDB-Container&quot; class=&quot;headerlink&quot; title=&quot;MariaDB Container&quot;&gt;&lt;/a&gt;MariaDB Container&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;docker run -it --name dj-mariadb -e MYSQL_ROOT_PASSWORD&amp;#x3D;rootpw -e MYSQL_USER&amp;#x3D;domjudge -e MYSQL_PASSWORD&amp;#x3D;djpw -e MYSQL_DATABASE&amp;#x3D;domjudge -e CONTAINER_TIMEZONE&amp;#x3D;Asia&amp;#x2F;Taipei -p 13306:3306 mariadb --max-connections&amp;#x3D;1000&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="Uncategorized" scheme="https://tracyliu1220.github.io/categories/Uncategorized/"/>
+    
+    
+    <category term="docker" scheme="https://tracyliu1220.github.io/tags/docker/"/>
+    
+    <category term="DOMjudge" scheme="https://tracyliu1220.github.io/tags/DOMjudge/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization</title>
+    <link href="https://tracyliu1220.github.io/2019/09/19/2019-09-19-Grad-CAM-Visual-Explanations-from-Deep-Networks-via-Gradient-based-Localization/"/>
+    <id>https://tracyliu1220.github.io/2019/09/19/2019-09-19-Grad-CAM-Visual-Explanations-from-Deep-Networks-via-Gradient-based-Localization/</id>
+    <published>2019-09-19T19:00:00.000Z</published>
+    <updated>2021-03-31T01:22:55.489Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;ICCV 2017&lt;br&gt;@vt.edu @gatech.edu&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1X3DKRFiszOit3wCd2hyxW4_dVIyKg5-fJAMiO2PUFn4/edit?fbclid=IwAR1b7G4J8JE6pEpI5RCKJS5NcecSH3BOEmom-nemnA4OfcwnoDJmK-GqCx8&amp;pli=1#slide=id.p&quot;&gt;slide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1610.02391.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Input: Images&lt;/li&gt;
+&lt;li&gt;Output: Visualization of discrimination regions&lt;/li&gt;
+&lt;li&gt;Interpretability&lt;/li&gt;
+&lt;li&gt;Without architectural changes or re-training&lt;/li&gt;
+&lt;li&gt;To give explaination to the prediction of some models&lt;/li&gt;
+&lt;li&gt;General version of CAM&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Paper Notes" scheme="https://tracyliu1220.github.io/categories/Paper-Notes/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 Google Script 來管理 Gmail</title>
+    <link href="https://tracyliu1220.github.io/2019/09/13/2019-09-13-Google-Script-on-Gmail/"/>
+    <id>https://tracyliu1220.github.io/2019/09/13/2019-09-13-Google-Script-on-Gmail/</id>
+    <published>2019-09-13T02:41:51.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://developers.google.com/apps-script/&quot;&gt;Google Apps Script&lt;/a&gt; 是 Google 自己出的 Script，可以拿來串接 Google 各項服務的 API&lt;/p&gt;
+&lt;p&gt;上學期期末的時候其實就聽過系上社團學長說他有用這個在管理他的 Gmail，當然那個時候也是第一次聽過有 Google Script 這種東西&lt;/p&gt;
+&lt;p&gt;不過期末實在太忙了就沒有研究，然後放暑假 email 們也少少的所以也沒有想到&lt;/p&gt;
+&lt;p&gt;直到最近開學，直接被各種學校公告學習系統 email 轟炸，熊熊覺得可以來研究一下了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Uncategorized" scheme="https://tracyliu1220.github.io/categories/Uncategorized/"/>
+    
+    
+    <category term="gs" scheme="https://tracyliu1220.github.io/tags/gs/"/>
+    
+    <category term="organize" scheme="https://tracyliu1220.github.io/tags/organize/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Learning Deep Features for Discriminative Localization</title>
+    <link href="https://tracyliu1220.github.io/2019/09/12/2019-09-12-Learning-Deep-Features-for-Discriminative-Localization/"/>
+    <id>https://tracyliu1220.github.io/2019/09/12/2019-09-12-Learning-Deep-Features-for-Discriminative-Localization/</id>
+    <published>2019-09-12T19:00:00.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;CVPR 2016&lt;br&gt;@csail.mit.edu&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://cnnlocalization.csail.mit.edu/Zhou_Learning_Deep_Features_CVPR_2016_paper.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;h4 id=&quot;Problem&quot;&gt;&lt;a href=&quot;#Problem&quot; class=&quot;headerlink&quot; title=&quot;Problem&quot;&gt;&lt;/a&gt;Problem&lt;/h4&gt;&lt;p&gt;In some CNN models, the objects localization ability is lost when fully-connected layers are used for classification&lt;/p&gt;
+&lt;h4 id=&quot;Goal&quot;&gt;&lt;a href=&quot;#Goal&quot; class=&quot;headerlink&quot; title=&quot;Goal&quot;&gt;&lt;/a&gt;Goal&lt;/h4&gt;&lt;p&gt;To both classify the image and localize class-specific image regions in a single forward-pass&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Paper Notes" scheme="https://tracyliu1220.github.io/categories/Paper-Notes/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Google vim-codefmt</title>
+    <link href="https://tracyliu1220.github.io/2019/09/06/2019-09-06-Google-vim-codefmt/"/>
+    <id>https://tracyliu1220.github.io/2019/09/06/2019-09-06-Google-vim-codefmt/</id>
+    <published>2019-09-06T14:46:17.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/google/vim-codefmt&quot;&gt;Google vim-codefmt&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Commands&quot;&gt;&lt;a href=&quot;#Commands&quot; class=&quot;headerlink&quot; title=&quot;Commands&quot;&gt;&lt;/a&gt;Commands&lt;/h2&gt;&lt;p&gt;&lt;code&gt;:FormatCode &amp;lt;TAB&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Installation&quot;&gt;&lt;a href=&quot;#Installation&quot; class=&quot;headerlink&quot; title=&quot;Installation&quot;&gt;&lt;/a&gt;Installation&lt;/h2&gt;&lt;h3 id=&quot;With-vim-plug&quot;&gt;&lt;a href=&quot;#With-vim-plug&quot; class=&quot;headerlink&quot; title=&quot;With vim-plug&quot;&gt;&lt;/a&gt;With &lt;a href=&quot;https://github.com/junegunn/vim-plug&quot;&gt;vim-plug&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;vim ~/.vimrc&lt;/code&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Uncategorized" scheme="https://tracyliu1220.github.io/categories/Uncategorized/"/>
+    
+    
+    <category term="vim" scheme="https://tracyliu1220.github.io/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Conditional Image Generation with PixelCNN Decoders</title>
+    <link href="https://tracyliu1220.github.io/2019/08/30/2019-08-30-Conditional-Image-Generation-with-PixelCNN-Decoders/"/>
+    <id>https://tracyliu1220.github.io/2019/08/30/2019-08-30-Conditional-Image-Generation-with-PixelCNN-Decoders/</id>
+    <published>2019-08-30T14:00:13.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;NIPS 2016&lt;br&gt;@google.com&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://papers.nips.cc/paper/6527-conditional-image-generation-with-pixelcnn-decoders.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Generate pictures pixel by pixel&lt;/li&gt;
+&lt;li&gt;Related Works&lt;ul&gt;
+&lt;li&gt;PixelRNN: better performance&lt;/li&gt;
+&lt;li&gt;PixelCNN: faster to train (easier to parallelize)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Gated PixelCNN&lt;/li&gt;
+&lt;li&gt;Conditional variant of the Gated PixelCNN&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Paper Notes" scheme="https://tracyliu1220.github.io/categories/Paper-Notes/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Attention is All You Need</title>
+    <link href="https://tracyliu1220.github.io/2019/08/16/2019-08-16-Attention-is-All-You-Need/"/>
+    <id>https://tracyliu1220.github.io/2019/08/16/2019-08-16-Attention-is-All-You-Need/</id>
+    <published>2019-08-16T14:00:13.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;NIPS 2017&lt;br&gt;@google.com&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1706.03762.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Recurrent Models&lt;ul&gt;
+&lt;li&gt;sequence operations&lt;/li&gt;
+&lt;li&gt;hard to do parallelization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;the Transformer&lt;ul&gt;
+&lt;li&gt;no recurrence&lt;/li&gt;
+&lt;li&gt;relying entirely on an attention mechanism&lt;/li&gt;
+&lt;li&gt;global dependencies&lt;/li&gt;
+&lt;li&gt;parallelization with 8 GPUs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Paper Notes" scheme="https://tracyliu1220.github.io/categories/Paper-Notes/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Effective Approaches to Attention-based Neural Machine Translation</title>
+    <link href="https://tracyliu1220.github.io/2019/08/16/2019-08-16-Effective-Approaches-to-Attention-based-Neural-Machine-Translation/"/>
+    <id>https://tracyliu1220.github.io/2019/08/16/2019-08-16-Effective-Approaches-to-Attention-based-Neural-Machine-Translation/</id>
+    <published>2019-08-16T13:40:22.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;EMNLP 2015&lt;br&gt;@stanford.edu&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://aclweb.org/anthology/D15-1166&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Attentional mechanism jointly translate and align words&lt;/li&gt;
+&lt;li&gt;2 types of attention-based models&lt;ul&gt;
+&lt;li&gt;global&lt;ul&gt;
+&lt;li&gt;all source words&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;local&lt;ul&gt;
+&lt;li&gt;subset of source words&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Paper Notes" scheme="https://tracyliu1220.github.io/categories/Paper-Notes/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Auto-Encoding Variational Bayes</title>
+    <link href="https://tracyliu1220.github.io/2019/07/31/2019-07-31-Auto-Encoding-Variational-Bayes/"/>
+    <id>https://tracyliu1220.github.io/2019/07/31/2019-07-31-Auto-Encoding-Variational-Bayes/</id>
+    <published>2019-07-31T13:30:21.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;ICLR 2014&lt;br&gt;@google.com&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1312.6114.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Variational Bayesian (VB)&lt;/li&gt;
+&lt;li&gt;Approximate posterior using MLP&lt;/li&gt;
+&lt;li&gt;Stochatic Gradient Variational Bayes (SGVB)&lt;/li&gt;
+&lt;li&gt;Auto-Encoding VB (AEVB) algorithm&lt;/li&gt;
+&lt;li&gt;Variational auto-encoder (VAE)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Method&quot;&gt;&lt;a href=&quot;#Method&quot; class=&quot;headerlink&quot; title=&quot;Method&quot;&gt;&lt;/a&gt;Method&lt;/h3&gt;&lt;h4 id=&quot;problem&quot;&gt;&lt;a href=&quot;#problem&quot; class=&quot;headerlink&quot; title=&quot;problem&quot;&gt;&lt;/a&gt;problem&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;the integral of the marginal likelihood $p_\theta(x) = \int p_\theta(z)p_\theta(x|z) dz$ is intractable&lt;/li&gt;
+&lt;li&gt;a large dataset: the need of updating using small minibatches&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Paper Notes" scheme="https://tracyliu1220.github.io/categories/Paper-Notes/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sequence to Sequence Learning with Neural Networks</title>
+    <link href="https://tracyliu1220.github.io/2019/07/25/2019-07-25-Sequence-to-Sequence-Learning-with-Neural-Networks/"/>
+    <id>https://tracyliu1220.github.io/2019/07/25/2019-07-25-Sequence-to-Sequence-Learning-with-Neural-Networks/</id>
+    <published>2019-07-25T13:30:21.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;NIPS 2014&lt;br&gt;@google.com&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Abstract&quot;&gt;&lt;a href=&quot;#Abstract&quot; class=&quot;headerlink&quot; title=&quot;Abstract&quot;&gt;&lt;/a&gt;Abstract&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Task: an English to French translation task from the WMT-14 dataset&lt;/li&gt;
+&lt;li&gt;Method:&lt;ul&gt;
+&lt;li&gt;a Deep LSTM: maps theinput sequence to a vector of a fixed dimensionality&lt;/li&gt;
+&lt;li&gt;another Deep LSTM: decodes the target sequence from the vector&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Result: BLEU score 34.8&lt;/li&gt;
+&lt;li&gt;Additional Founds: reversing the order of the words in all source sentences (but not target sentences) improved the LSTM’s performance markedly&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Paper Notes" scheme="https://tracyliu1220.github.io/categories/Paper-Notes/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Residual Learning for Image Recognition</title>
+    <link href="https://tracyliu1220.github.io/2019/07/17/2019-07-17-Residual-Learning-for-Image-Recognition/"/>
+    <id>https://tracyliu1220.github.io/2019/07/17/2019-07-17-Residual-Learning-for-Image-Recognition/</id>
+    <published>2019-07-17T23:48:35.000Z</published>
+    <updated>2021-03-31T01:22:55.485Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;CVPR 2016&lt;br&gt;@microsoft.com&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Contents&quot;&gt;&lt;a href=&quot;#Contents&quot; class=&quot;headerlink&quot; title=&quot;Contents&quot;&gt;&lt;/a&gt;Contents&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Abstract&quot;&gt;&lt;a href=&quot;#Abstract&quot; class=&quot;headerlink&quot; title=&quot;Abstract&quot;&gt;&lt;/a&gt;Abstract&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;residual networks&lt;/li&gt;
+&lt;li&gt;VGG nets&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/u012905422/article/details/52372755&quot;&gt;COCO object detection dataset&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Paper Notes" scheme="https://tracyliu1220.github.io/categories/Paper-Notes/"/>
+    
+    
+    <category term="deep learning" scheme="https://tracyliu1220.github.io/tags/deep-learning/"/>
+    
+  </entry>
+  
+</feed>

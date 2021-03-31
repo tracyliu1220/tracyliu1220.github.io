@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Learning Deep Features for Discriminative Localization - Tracy&#039;s Neverland</title><meta description="CVPR 2016@csail.mit.edu  Contentspdf IntroductionProblemIn some CNN models, the objects localization ability is lost when fully-connected layers are used for classification GoalTo both classify the i"><meta property="og:type" content="blog"><meta property="og:title" content="Learning Deep Features for Discriminative Localization"><meta property="og:url" content="https://tracyliu1220.github.io/2019/09/12/2019-09-12-Learning-Deep-Features-for-Discriminative-Localization/"><meta property="og:site_name" content="Tracy&#039;s Neverland"><meta property="og:description" content="CVPR 2016@csail.mit.edu  Contentspdf IntroductionProblemIn some CNN models, the objects localization ability is lost when fully-connected layers are used for classification GoalTo both classify the i"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://tracyliu1220.github.io/img/avatar.png"><meta property="article:published_time" content="2019-09-12T19:00:00.000Z"><meta property="article:modified_time" content="2021-03-31T01:22:55.485Z"><meta property="article:author" content="Tracy Liu"><meta property="article:tag" content="deep learning"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/avatar.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://tracyliu1220.github.io/2019/09/12/2019-09-12-Learning-Deep-Features-for-Discriminative-Localization/"},"headline":"Tracy's Neverland","image":["https://i.imgur.com/a8NzB3s.png","https://i.imgur.com/FF7Mq0Z.png","https://i.imgur.com/vrf0K6N.png","https://i.imgur.com/MCWz7zE.png","https://i.imgur.com/4OAQC6E.png","https://i.imgur.com/vL1HVc7.png","https://i.imgur.com/3x0Ylm0.png","https://i.imgur.com/uli2PRh.png","https://i.imgur.com/r4SPtRf.png","https://i.imgur.com/b4u54aR.png","https://i.imgur.com/IeQcQLy.png"],"datePublished":"2019-09-12T19:00:00.000Z","dateModified":"2021-03-31T01:22:55.485Z","author":{"@type":"Person","name":"Tracy Liu"},"description":"CVPR 2016@csail.mit.edu  Contentspdf IntroductionProblemIn some CNN models, the objects localization ability is lost when fully-connected layers are used for classification GoalTo both classify the i"}</script><link rel="canonical" href="https://tracyliu1220.github.io/2019/09/12/2019-09-12-Learning-Deep-Features-for-Discriminative-Localization/"><link rel="icon" href="/img/rounded_avatar.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-178400900-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-178400900-1');</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Tracy's Neverland" type="application/atom+xml">
+</head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.png" alt="Tracy&#039;s Neverland" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tracyliu1220/tracyliu1220.github.io"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2019-09-12T19:00:00.000Z" title="2019-09-12T19:00:00.000Z">2019-09-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2021-03-31T01:22:55.485Z" title="2021-03-31T01:22:55.485Z">2021-03-31</time></span><span class="level-item"><a class="link-muted" href="/categories/Paper-Notes/">Paper Notes</a></span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>&nbsp;visits</span></div></div><h1 class="title is-3 is-size-4-mobile">Learning Deep Features for Discriminative Localization</h1><div class="content"><blockquote>
+<p>CVPR 2016<br>@csail.mit.edu</p>
+</blockquote>
+<h2 id="Contents"><a href="#Contents" class="headerlink" title="Contents"></a>Contents</h2><p><a target="_blank" rel="noopener" href="http://cnnlocalization.csail.mit.edu/Zhou_Learning_Deep_Features_CVPR_2016_paper.pdf">pdf</a></p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><h4 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h4><p>In some CNN models, the objects localization ability is lost when fully-connected layers are used for classification</p>
+<h4 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h4><p>To both classify the image and localize class-specific image regions in a single forward-pass</p>
+<a id="more"></a>
+
+<h3 id="Related-Works"><a href="#Related-Works" class="headerlink" title="Related Works"></a>Related Works</h3><ul>
+<li>Weakly-supervised object localization<ul>
+<li>Bergamo et al, Cinbis et al, Pinheiro et al, Oquab et al</li>
+<li>They are not trained end-to-end</li>
+</ul>
+</li>
+<li>Visualizing CNNs<ul>
+<li>visualize the internal representation learned by CNNs in an attempt to better understand their properties</li>
+<li>Zeiler et al, Mahendran et al, Dosovitskiy et al</li>
+</ul>
+</li>
+</ul>
+<h3 id="Class-Activation-Mapping-CAM"><a href="#Class-Activation-Mapping-CAM" class="headerlink" title="Class Activation Mapping (CAM)"></a>Class Activation Mapping (CAM)</h3><p>using global average pooling (GAP)</p>
+<ul>
+<li>$f_k(x, y)$: the activation of unit $k$ in the last convolutional layer at spatial location $(x, y)$</li>
+<li>$F^k = \sum_{x, y}f_k(x, y)$: the result of perfoming global average pooling for unit $k$</li>
+<li>$w_k^c$: the importance of $F_k$ for class $c$</li>
+<li>$S_c = \sum_kw_k^cF_k$: the input of the softmax</li>
+<li>$P_c = \frac{exp(S_c)}{\sum_c exp(S_c)}$: the output of the softmax for class $c$</li>
+<li>$M_c$: class activation map for class c</li>
+</ul>
+<p>$F^k = \sum_{x, y}f_k(x, y)$</p>
+<p>$S_c = \sum_k w_k^c \sum_{x,y} f_k(x, y) = \sum_{x,y}\sum_k w_k^cf_k(x,y)$</p>
+<p>$M_c(x,y) = \sum_kw_k^cf_k(x,y)$</p>
+<p>$S_c = \sum_{x,y} M_c(x,y)$</p>
+<p><img src="https://i.imgur.com/a8NzB3s.png"></p>
+<h3 id="Global-Average-Pooling-vs-Global-Max-Pooling"><a href="#Global-Average-Pooling-vs-Global-Max-Pooling" class="headerlink" title="Global Average Pooling vs. Global Max Pooling"></a>Global Average Pooling vs. Global Max Pooling</h3><ul>
+<li>GAP<ul>
+<li>loss encourages the network to identify the extent of the object</li>
+</ul>
+</li>
+<li>GMP<ul>
+<li>loss encourages to identify just one discrimminative part</li>
+</ul>
+</li>
+</ul>
+<h3 id="Weakly-supervised-Object-Localization"><a href="#Weakly-supervised-Object-Localization" class="headerlink" title="Weakly-supervised Object Localization"></a>Weakly-supervised Object Localization</h3><h4 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h4><ul>
+<li>Originals<ul>
+<li>AlexNet</li>
+<li>VGGnet</li>
+<li>GoogLeNet</li>
+</ul>
+</li>
+<li>Remove the fully-connected layers before the final output and replace them with GAP followed by a fully-conneted softmax layer<ul>
+<li>AlexNet-GAP</li>
+<li>VGGnet-GAP</li>
+<li>GoogLeNet-GAP</li>
+</ul>
+</li>
+<li>AlexNet*-GAP<ul>
+<li>AlexNet is the most affected by the removal of the fully-connected layers</li>
+<li>add two convolutional layers just before GAP</li>
+</ul>
+</li>
+</ul>
+<h4 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h4><h5 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h5><p><img src="https://i.imgur.com/FF7Mq0Z.png"></p>
+<p>In most cases there is a small performance drop of 1 − 2% when removing the additional layers from the various networks</p>
+<h5 id="Localization"><a href="#Localization" class="headerlink" title="Localization"></a>Localization</h5><p><img src="https://i.imgur.com/vrf0K6N.png"></p>
+<p><img src="https://i.imgur.com/MCWz7zE.png"></p>
+<p><img src="https://i.imgur.com/4OAQC6E.png"></p>
+<p>Generate bounding boxes: First segment the regions of which the value is above 20% of the max value of the CAM. Then take the bounding box that covers the largest connected component in the seg-mentation map</p>
+<h3 id="Deep-Features-for-Generic-Localization"><a href="#Deep-Features-for-Generic-Localization" class="headerlink" title="Deep Features for Generic Localization"></a>Deep Features for Generic Localization</h3><h4 id="Fine-grained-Recognition"><a href="#Fine-grained-Recognition" class="headerlink" title="Fine-grained Recognition"></a>Fine-grained Recognition</h4><p><img src="https://i.imgur.com/vL1HVc7.png"></p>
+<h4 id="Pattern-Discovery"><a href="#Pattern-Discovery" class="headerlink" title="Pattern Discovery"></a>Pattern Discovery</h4><h5 id="Discovering-informative-objects-in-the-scenes"><a href="#Discovering-informative-objects-in-the-scenes" class="headerlink" title="Discovering informative objects in the scenes"></a>Discovering informative objects in the scenes</h5><p><img src="https://i.imgur.com/3x0Ylm0.png"></p>
+<h5 id="Concept-localization-in-weakly-labeled-images"><a href="#Concept-localization-in-weakly-labeled-images" class="headerlink" title="Concept localization in weakly labeled images"></a>Concept localization in weakly labeled images</h5><p><img src="https://i.imgur.com/uli2PRh.png"></p>
+<h5 id="Weakly-supervised-text-detector"><a href="#Weakly-supervised-text-detector" class="headerlink" title="Weakly supervised text detector"></a>Weakly supervised text detector</h5><p><img src="https://i.imgur.com/r4SPtRf.png"></p>
+<h5 id="Interpreting-visual-question-answering"><a href="#Interpreting-visual-question-answering" class="headerlink" title="Interpreting visual question answering"></a>Interpreting visual question answering</h5><p><img src="https://i.imgur.com/b4u54aR.png"></p>
+<h2 id="Visualizing-Class-Specific-Units"><a href="#Visualizing-Class-Specific-Units" class="headerlink" title="Visualizing Class-Specific Units"></a>Visualizing Class-Specific Units</h2><p><img src="https://i.imgur.com/IeQcQLy.png"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/51631163">浅谈Class Activation Mapping（CAM）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_21097885/article/details/90039462">CAM(Class Activation Mapping)</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32116277">ResNet, AlexNet, VGG, Inception: 理解各种各样的CNN架构</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/41508276">《Self-produced Guidance for Weakly-supervised Object Localization》论文笔记</a></li>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/@marmot0814/rJ3YkmSLr">Note from marmot</a></li>
+<li><a target="_blank" rel="noopener" href="https://hackmd.io/qz5xCiQYTJyiCogr2oCKLA">Note from darklenx</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Learning Deep Features for Discriminative Localization</p><p><a href="https://tracyliu1220.github.io/2019/09/12/2019-09-12-Learning-Deep-Features-for-Discriminative-Localization/">https://tracyliu1220.github.io/2019/09/12/2019-09-12-Learning-Deep-Features-for-Discriminative-Localization/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Tracy Liu</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-09-12</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-03-31</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/deep-learning/">deep learning</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=5f4f920daad6e60013d63d69&amp;product=inline-share-buttons" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/09/13/2019-09-13-Google-Script-on-Gmail/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">使用 Google Script 來管理 Gmail</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/09/06/2019-09-06-Google-vim-codefmt/"><span class="level-item">Google vim-codefmt</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "472ebef5c554228752f2214fb21b3642",
+            repo: "tracyliu1220.github.io",
+            owner: "tracyliu1220",
+            clientID: "98269a8aafc362955bb4",
+            clientSecret: "3a0bdb74555894e5bb8f4698a20ecc9c30b2fce1",
+            admin: ["tracyliu1220"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="is-flex" href="#Contents"><span class="mr-2">1</span><span>Contents</span></a><ul class="menu-list"><li><a class="is-flex" href="#Introduction"><span class="mr-2">1.1</span><span>Introduction</span></a><ul class="menu-list"><li><a class="is-flex" href="#Problem"><span class="mr-2">1.1.1</span><span>Problem</span></a></li><li><a class="is-flex" href="#Goal"><span class="mr-2">1.1.2</span><span>Goal</span></a></li></ul></li><li><a class="is-flex" href="#Related-Works"><span class="mr-2">1.2</span><span>Related Works</span></a></li><li><a class="is-flex" href="#Class-Activation-Mapping-CAM"><span class="mr-2">1.3</span><span>Class Activation Mapping (CAM)</span></a></li><li><a class="is-flex" href="#Global-Average-Pooling-vs-Global-Max-Pooling"><span class="mr-2">1.4</span><span>Global Average Pooling vs. Global Max Pooling</span></a></li><li><a class="is-flex" href="#Weakly-supervised-Object-Localization"><span class="mr-2">1.5</span><span>Weakly-supervised Object Localization</span></a><ul class="menu-list"><li><a class="is-flex" href="#Setup"><span class="mr-2">1.5.1</span><span>Setup</span></a></li><li><a class="is-flex" href="#Localization"><span class="mr-2">1.5.2</span><span>Localization</span></a></li></ul></li><li><a class="is-flex" href="#Deep-Features-for-Generic-Localization"><span class="mr-2">1.6</span><span>Deep Features for Generic Localization</span></a><ul class="menu-list"><li><a class="is-flex" href="#Fine-grained-Recognition"><span class="mr-2">1.6.1</span><span>Fine-grained Recognition</span></a></li><li><a class="is-flex" href="#Interpreting-visual-question-answering"><span class="mr-2">1.6.2</span><span>Interpreting visual question answering</span></a></li></ul></li></ul></li><li><a class="is-flex" href="#Visualizing-Class-Specific-Units"><span class="mr-2">2</span><span>Visualizing Class-Specific Units</span></a></li><li><a class="is-flex" href="#Reference"><span class="mr-2">3</span><span>Reference</span></a></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.png" alt="Tracy&#039;s Neverland" height="28"></a><p class="size-small"><span>&copy; 2021 Tracy Liu</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">Visited by <span id="busuanzi_value_site_uv">0</span> users</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
